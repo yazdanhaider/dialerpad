@@ -119,8 +119,5 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ios-release.ipa
           asset_name: dialerpad.ipa
-<<<<<<< HEAD
-          asset_content_type: application/octet-stream 
-=======
-          asset_content_type: application/octet-stream 
->>>>>>> origin/main
+          asset_content_type: application/octet-stream
+
