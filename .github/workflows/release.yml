@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-release:
-    runs-on: macos-latest  # Using macOS for both Android and iOS builds
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       
@@ -38,7 +38,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-build-
 
-            
       
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -58,25 +57,10 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       
-      - name: Install iOS dependencies
-        run: |
-          cd ios
-          pod install
-          cd ..
-      
       # Build Android
       - name: Build Android APK
         run: |
           flutter build apk --release --split-per-abi
-      
-      # Build iOS
-      - name: Build iOS
-        run: |
-          flutter build ios --release --no-codesign
-          cd build/ios/iphoneos
-          mkdir Payload
-          cp -r Runner.app Payload
-          zip -r ../../../ios-release.ipa Payload
       
       # Create Release
       - name: Create Release
@@ -111,13 +95,3 @@ jobs:
           asset_name: dialerpad-armeabi-v7a.apk
           asset_content_type: application/vnd.android.package-archive
 
-      # Upload iOS IPA
-      - name: Upload iOS IPA
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN1 }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ios-release.ipa
-          asset_name: dialerpad.ipa
-          asset_content_type: application/octet-stream 
