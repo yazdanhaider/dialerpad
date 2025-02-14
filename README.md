@@ -85,13 +85,48 @@ A feature-rich phone dialer application built with Flutter, implementing modern 
 - Android: API 24+ (Android 7.0 and above)
 - iOS: Basic support (limited features due to platform restrictions)
 
-## Setup Instructions
+## Installation
 
-1. Clone the repository
-2. Copy `lib/app/config/api_keys.template.dart` to `lib/app/config/api_keys.dart`
-3. Add your Google API credentials
-4. Run `flutter pub get`
-5. Run the app using `flutter run`
+1. **Clone the Repository:**
+    ```bash
+    git clone https://github.com/yazdanhaider/dialerpad
+    ```
+
+2. **Configure API Keys:**
+    - Copy `lib/app/config/api_keys.template.dart` to `lib/app/config/api_keys.dart`
+    - Add your Google API credentials
+
+3. **Install Dependencies:**
+    ```bash
+    flutter pub get
+    ```
+
+4. **Run the App:**
+    ```bash
+    flutter run
+    ```
+
+## Code Structure
+
+- `lib/`: Contains the main codebase
+  - `app/`: Core application code
+    - `common/`: Shared components
+      - `widgets/`: Reusable UI components
+      - `values/`: App constants, colors, styles
+    - `modules/`: Feature modules
+      - `dialpad/`: Dialer functionality
+      - `contacts/`: Contact management
+      - `history/`: Call logs and history
+      - `blocked/`: Number blocking feature
+    - `services/`: Core services
+      - Call handling
+      - Contact management
+      - Theme management
+      - Google integration
+    - `routes/`: App navigation
+    - `config/`: App configuration
+  - `models/`: Data models
+  - `main.dart`: Application entry point
 
 ## Permissions Required
 - Phone State
